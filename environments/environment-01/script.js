@@ -2,49 +2,51 @@
 
 window.addEventListener("load", initApp);
 
-let userArray = [];
-
 async function initApp() {
-    console.log("JS er i gang!");
-    await getData();
-    console.log(userArray)
-
-    userArray.forEach(function (user) {
-      showUsers(user);
-    });
-
-    countUsers();
-  
+  const users = await getData();
+  console.log(users);
+  showUsers(users);
+  count(users)
 }
 
 async function getData() {
-  const response = await fetch("users.json");
-  const data = await response.json();
-  
-  // for(const key in data){
-  //   userArray.push(data[key]);
-  // }
-};
+  const res = await fetch("users.json");
+  return res.json();
+}
 
-function countUsers() {
-  let role = 0
+function showUsers(users) {
+  const list = document.querySelector("#userlist");
 
-  for(let key in userArray) {
-    ++role
-  };
-  console.log(role)
-};
+  for (const user of users) {
+    const html = /*html*/ `
+    <li>Name: ${user.name} - Role: ${user.role}</li>
+    `;
+    list.insertAdjacentHTML("beforeend", html);
+  }
+}
 
-function showUsers(user){
-  let userHTML =
-  /*HTML*/
-  `
-  <li>Navn: ${user.name}</li>
-  <li>Aktiv: ${user.active}</li>
-  <li>Type: ${user.role}</li>
-  <br>
-  `;
-  document
-  .querySelector("#userlist")
-  .insertAdjacentHTML("beforeend", userHTML);
+function count(users) {
+  const adminCount = document.querySelector("#admin-count");
+  const userCount = document.querySelector("#user-count");
+  const guestCount = document.querySelector("#guest-count");
+
+  let acounter = users.filter((user)=> user.role==="admin");
+  console.log(acounter);
+  let ucounter = users.filer((user)=>user.role==="user");
+  console.log(ucounter);
+  let gcounter = users.filter((user)=>user.role==="guest");
+  console.log(gcounter);
+
+  // for (const user of users) {
+  //   if (user.role === "admin") {
+  //     acounter++;
+  //   } else if(user.role === "user"){
+  //     ucounter++
+  //   } else {
+  //     gcounter++
+  //   }
+  // } 
+  adminCount.textContent = acounter.length
+  userCount.textContent = ucounter.length
+  guestCount.textContent = gcounter.length
 }
