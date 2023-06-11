@@ -6,7 +6,7 @@ async function initApp() {
   const users = await getData();
   console.log(users);
   showUsers(users);
-  count(users)
+  count(users);
 }
 
 async function getData() {
@@ -30,11 +30,11 @@ function count(users) {
   const userCount = document.querySelector("#user-count");
   const guestCount = document.querySelector("#guest-count");
 
-  let acounter = users.filter((user)=> user.role==="admin");
+  let acounter = users.filter((user) => user.role === "admin");
   console.log(acounter);
-  let ucounter = users.filer((user)=>user.role==="user");
+  let ucounter = users.filter((user) => user.role === "user");
   console.log(ucounter);
-  let gcounter = users.filter((user)=>user.role==="guest");
+  let gcounter = users.filter((user) => user.role === "guest");
   console.log(gcounter);
 
   // for (const user of users) {
@@ -45,8 +45,8 @@ function count(users) {
   //   } else {
   //     gcounter++
   //   }
-  // } 
-  adminCount.textContent = acounter.length
-  userCount.textContent = ucounter.length
-  guestCount.textContent = gcounter.length
+  // }
+  adminCount.textContent = acounter.length;
+  userCount.textContent = ucounter.length;
+  guestCount.textContent = gcounter.length;
 }
