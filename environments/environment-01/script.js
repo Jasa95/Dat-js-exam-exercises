@@ -8,7 +8,7 @@ async function initApp() {
     console.log("JS er i gang!");
     await getData();
     console.log(userArray)
-    userArray.forEach(showUsers);
+    showUsers();
     
 }
 
@@ -22,6 +22,8 @@ async function getData() {
 };
 
 async function showUsers(){
+
+
     let userHTML =
       /*HTML*/
       `
