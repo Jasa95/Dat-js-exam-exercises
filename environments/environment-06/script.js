@@ -32,3 +32,7 @@ function showProduct (productlist) {
     }
 
 }
+
+function addToBasket() {
+        
+}
