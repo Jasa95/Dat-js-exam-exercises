@@ -7,8 +7,8 @@ let basket = []
 async function start() {
     const productlist = await getData()
     showProduct(productlist)
-    console.log(productlist);
-    document.querySelector("#products").addEventListener("click", productBasket)
+    console.log(basket);
+    document.querySelector("#products").addEventListener("click", addToBasket)
 }
 
 async function getData() {
@@ -25,23 +25,10 @@ function showProduct (productlist) {
                <h3>${product.name}</h3>
                <p>vægt: ${product.weight} g</p>
                <p>pris: ${product.price},-</p>
-               <button>Læg i kurv</button>
+               <button class="add-to-basket">Læg i kurv</button>
             </article>
         `;
         list.insertAdjacentHTML("beforeend", html)
     }
-list.addEventListener("click", productBasket);} 
 
-function productBasket(event) {
-    if(event.target.classList("#productBasket")) {
-        const article = event.target.closest("article");
-        const name = article.querySelector("h3").textContent
-        const weight = parseInt(article.querySelector("p:nth-of-type(1)"),textContent.split(":")[1]);
-        const price = parseInt(article.querySelector("p:nth-of-type(2)").textContent.split(":")[1]);
-        const newItem = {name, weight, price}
-        basket.push(newItem)
-    }
-
-
-    console.log(basket);
 }
