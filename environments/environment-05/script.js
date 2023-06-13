@@ -6,31 +6,33 @@ window.addEventListener("load", start);
 
 function start() {
   console.log(courses);
-  
-  showCourse()
+  filterCourse();
+  showCourse();
 
   document
     .querySelector("#select-filter-ects")
     .addEventListener("change", () => {
-      const filterBy = document.querySelector("#select-filter-ects").value;
+      const filterBy = document.querySelector("#select-filter-ects").valueOf;
       filterCourse(filterBy);
     });
 }
 
 function showCourse() {
   const list = document.querySelector("#courses-list");
-  list.innerHTML=""
-  
-  
+  list.innerHTML = "";
+
   for (const course of courses) {
-      const html = /*html*/ `
+    const html = /*html*/ `
       <li>Name: ${course.name} - ectsPoints: ${course.ectsPoints}</li>
       `;
-      list.insertAdjacentHTML("beforeend", html);
-    }
-    
+    list.insertAdjacentHTML("beforeend", html);
+  }
 }
-
-function filterCourse() {
-   
+/// forkert damnit
+function filterCourse(filterBy) {
+  console.log(filterBy);
+  if (filterBy === "value") {
+    courses.filter((a, b) => a[filterBy].localeCompare(b[filterBy]));
+  } else courses.filter((a, b) => a[filterBy] - b[filterBy]);
+  showCourse();
 }
