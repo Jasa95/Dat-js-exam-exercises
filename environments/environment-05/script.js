@@ -9,7 +9,12 @@ function start() {
   
   showCourse()
 
-  document.querySelector("#select-filter-ects").addEventListener("change", filterCourse);
+  document
+    .querySelector("#select-filter-ects")
+    .addEventListener("change", () => {
+      const filterBy = document.querySelector("#select-filter-ects").value;
+      filterCourse(filterBy);
+    });
 }
 
 function showCourse() {
