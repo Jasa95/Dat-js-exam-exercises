@@ -33,6 +33,19 @@ function showProduct (productlist) {
 
 }
 
-function addToBasket() {
+function basketClicked(name, weight, price) {
+    const newItem = {name: name, weight: weight, price: price}
+    basket.push(newItem);
+    console.log(basket)
+}
+
+function addToBasket(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const name = form.name.value;
+    const weight = form.weight.value;
+    const price = form.price.value;
         
+    basketClicked(name, weight, price)
 }
